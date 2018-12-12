@@ -10,16 +10,16 @@ import java.util.Map;
 
 public class Networker {
 	
-	//TEST THIS LATER
-	public static String sendPOST(String urlForConnection, Map<String, String> parameters, String data) throws IOException {
-		URL url = new URL(createURLFromParams(urlForConnection, parameters));
+	public static String sendPOST(String urlForConnection, Map<String, String> parameters) throws IOException {
+		URL url = new URL(urlForConnection);
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod("POST");
 		connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+		connection.setRequestProperty("Content-Type", "application/json;");
 		connection.setDoOutput(true);
 		
 		OutputStream os = connection.getOutputStream();
-		os.write(data.getBytes());
+		os.write(createJSONFromParams(parameters).getBytes());
 		os.flush();
 		os.close();
 		
@@ -34,8 +34,6 @@ public class Networker {
 		}
 
 		String response = responseBuffer.toString("UTF-8");
-		System.out.println(response);
-		
 		return response;
 	}
 
@@ -51,6 +49,15 @@ public class Networker {
 		url = url.substring(0, url.length()-1);
 		
 		return url;
+	}
+	
+	public static String createJSONFromParams(Map<String, String> parameters) {
+		String json = "{\n";
+		for(Map.Entry<String, String> param: parameters.entrySet()) {
+			json += "\t\"" + param.getKey() + "\": \"" + param.getValue() + "\",\n";
+		}
+		json+="}";
+		return json;
 	}
 
 }

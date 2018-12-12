@@ -9,3 +9,7 @@
 2018-12-12 12:10:37,688 [Worker-3] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
 2018-12-12 12:10:37,764 [Worker-2] WARN  org.eclipse.jgit.util.FS_Win32 - Exception caught during execution of command '[bash, --login, -c, which git]' in 'C:\Users\Kush', return code '127', error message 'bash: which: command not found
 '
+2018-12-12 16:32:26,925 [Worker-0] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2018-12-12 16:32:27,225 [Worker-0] INFO  c.g.t.t.d.PublishedGradleVersions - Updating Gradle version information cache failed. Using outdated cache.
+2018-12-12 16:32:29,938 [Worker-4] WARN  org.eclipse.jgit.util.FS_Win32 - Exception caught during execution of command '[bash, --login, -c, which git]' in 'C:\Users\Kush', return code '127', error message 'bash: which: command not found
+'

@@ -36,7 +36,7 @@ public class Main {
 				}
 				display.renderFrame(frame);
 				
-				if(detector.getFramesUnchanged() > 48 && detector.getNumFaces() == 1) {
+				if(detector.getFramesUnchanged() > 24 && detector.getNumFaces() == 1) {
 					String fileName = "" + System.currentTimeMillis();
 					File outputImage = Output.saveImage(input.getFrame(), "./res/temp/", fileName, "png");
 					String base64Output = "Image encoding failed";
@@ -47,17 +47,15 @@ public class Main {
 					}
 					
 					Map<String, String> testParams = new LinkedHashMap<String, String>();
-					testParams.put("output", "JSON");
-					testParams.put("apikey", "fb3cb2adb3195484a0c188a7412ba3ba");
-					//testParams.put("model", "Ethnicity");
+					testParams.put("api_key", "d45fd466-51e2-4701-8da8-04351c872236");
+					testParams.put("file_base64", base64Output);
+					testParams.put("detection_flags", "bestface, classification");
+					
 					try {
-						Networker.sendPOST("https://api.haystack.ai/api/image/analyze", testParams, base64Output);
+						System.out.println(Networker.sendPOST("http://www.betafaceapi.com/api/v2/media", testParams));
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					//System.out.println(Networker.createURLFromParams("https://api.haystack.ai/api/image/analyze", testParams));
-					
-					//System.out.println(base64Output);
 					System.exit(0);
 				}
 			}
