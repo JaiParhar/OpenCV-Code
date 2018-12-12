@@ -48,8 +48,8 @@ public class Main {
 					
 					Map<String, String> testParams = new LinkedHashMap<String, String>();
 					testParams.put("output", "JSON");
-					testParams.put("apikey", "YOUR_KEY_HERE");
-					testParams.put("model", "ethnicity");
+					testParams.put("apikey", "fb3cb2adb3195484a0c188a7412ba3ba");
+					//testParams.put("model", "Ethnicity");
 					try {
 						Networker.sendPOST("https://api.haystack.ai/api/image/analyze", testParams, base64Output);
 					} catch (IOException e) {
