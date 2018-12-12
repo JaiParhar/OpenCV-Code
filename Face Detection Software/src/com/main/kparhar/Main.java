@@ -3,6 +3,8 @@ package com.main.kparhar;
 import java.io.File;
 import java.io.IOException;
 import java.util.Base64;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -43,7 +45,19 @@ public class Main {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					System.out.println(base64Output);
+					
+					Map<String, String> testParams = new LinkedHashMap<String, String>();
+					testParams.put("output", "JSON");
+					testParams.put("apikey", "YOUR_KEY_HERE");
+					testParams.put("model", "ethnicity");
+					try {
+						Networker.sendPOST("https://api.haystack.ai/api/image/analyze", testParams, base64Output);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					//System.out.println(Networker.createURLFromParams("https://api.haystack.ai/api/image/analyze", testParams));
+					
+					//System.out.println(base64Output);
 					System.exit(0);
 				}
 			}
