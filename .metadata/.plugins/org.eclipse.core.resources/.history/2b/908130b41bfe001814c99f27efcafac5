@@ -1,0 +1,44 @@
+package com.main.kparhar;
+
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfRect;
+import org.opencv.objdetect.CascadeClassifier;
+
+public class FacialDetection {
+
+	CascadeClassifier detector;
+	
+	int numFaces;
+	int lastNumFaces;
+	int framesUnchanged;
+	
+	MatOfRect faceDetections;
+	
+	public FacialDetection(String cascadeClassifier) {
+		detector = new CascadeClassifier(cascadeClassifier);
+		lastNumFaces = 0;
+		framesUnchanged = 0;
+	}
+	
+	public void detectFaces(Mat frame) {
+		detector.detectMultiScale(frame, faceDetections);
+		numFaces = faceDetections.toArray().length;
+		
+		if(numFaces == lastNumFaces) {
+			framesUnchanged++;
+		} else {
+			lastNumFaces = numFaces;
+			framesUnchanged = 0;
+		}
+		
+	}
+	
+	public MatOfRect getFacesMats() {
+		return faceDetections;
+	}
+	
+	public int getNumFaces() {
+		return numFaces;
+	}
+	
+}

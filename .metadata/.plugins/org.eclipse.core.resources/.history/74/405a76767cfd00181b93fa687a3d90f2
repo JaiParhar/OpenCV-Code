@@ -1,0 +1,65 @@
+package com.main.kparhar;
+
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfRect;
+import org.opencv.objdetect.CascadeClassifier;
+import org.opencv.videoio.VideoCapture;
+
+public class Main {
+
+	public static void main(String[] args) {
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		
+		//Initializing videocapture
+		VideoCapture capture = new VideoCapture(0);
+		
+		//Creating frame
+		JFrame jframe = new JFrame("Look at the dumbasses");
+	    jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    JLabel vidpanel = new JLabel();
+	    jframe.setContentPane(vidpanel);
+	    jframe.setVisible(true);
+
+	    String xmlFile = "C:/OpenCV/opencv/build/etc/lbpcascades/lbpcascade_frontalface.xml";
+	    CascadeClassifier classifier = new CascadeClassifier(xmlFile);
+	    
+	    Mat frame = new Mat();
+	    while (true) {
+	        if (capture.read(frame)) {
+	        	
+	        	MatOfRect faceDetections = new MatOfRect();
+	            classifier.detectMultiScale(src, faceDetections);
+	        	
+	        	jframe.setSize(imageFromMatrix(frame).getWidth(null), imageFromMatrix(frame).getHeight(null));
+	            ImageIcon image = new ImageIcon(imageFromMatrix(frame));
+	            vidpanel.setIcon(image);
+	            vidpanel.repaint();
+
+	        }
+	    }
+		
+	}
+	
+	public static BufferedImage imageFromMatrix(Mat m) {
+		int type = BufferedImage.TYPE_BYTE_GRAY;
+		if ( m.channels() > 1 ) {
+			type = BufferedImage.TYPE_3BYTE_BGR;
+		}
+		int bufferSize = m.channels()*m.cols()*m.rows();
+		byte [] b = new byte[bufferSize];
+		m.get(0,0,b);
+		BufferedImage image = new BufferedImage(m.cols(),m.rows(), type);
+		final byte[] targetPixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
+		System.arraycopy(b, 0, targetPixels, 0, b.length);  
+		return image;
+	}
+
+}

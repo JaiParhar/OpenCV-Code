@@ -1,0 +1,29 @@
+package com.main.kparhar;
+
+import org.opencv.core.Mat;
+import org.opencv.videoio.VideoCapture;
+
+public class VideoSource {
+
+	VideoCapture vSource;
+	Mat currFrame;
+	
+	public VideoSource(int source) {
+		vSource = new VideoCapture(source);
+		if(init()) { System.out.println(""); }
+	}
+	
+	public VideoSource(String source) {
+		vSource = new VideoCapture(source);
+	}
+	
+	private boolean init() {
+		currFrame = new Mat();
+		return true;
+	}
+	
+	public void getFrame() {
+		
+	}
+	
+}

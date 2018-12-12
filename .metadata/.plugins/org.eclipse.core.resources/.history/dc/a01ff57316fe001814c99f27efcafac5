@@ -1,0 +1,14 @@
+package com.main.kparhar;
+
+import org.opencv.core.Mat;
+import org.opencv.videoio.VideoCapture;
+
+public class FacialDetection {
+
+	VideoCapture source;
+	
+	public Mat getCurrentFrame() {
+		
+	}
+	
+}

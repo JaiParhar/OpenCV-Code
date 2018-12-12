@@ -1,0 +1,39 @@
+package com.main.kparhar;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import org.opencv.core.Core;
+import org.opencv.videoio.VideoCapture;
+
+public class Main {
+
+	public static void main(String[] args) {
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		
+		//Initializing videocapture
+		VideoCapture capture = new VideoCapture(0);
+		
+		//Creating frame
+		JFrame jframe = new JFrame("Look at the dumbasses");
+	    jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    JLabel vidpanel = new JLabel();
+	    jframe.setContentPane(vidpanel);
+	    jframe.setVisible(true);
+
+	    
+	    Mat frame = new Mat();
+	    while (true) {
+	        if (capture.read(frame)) {
+
+	            ImageIcon image = new ImageIcon(Mat2bufferedImage(frame));
+	            vidpanel.setIcon(image);
+	            vidpanel.repaint();
+
+	        }
+	    }
+		
+	}
+
+}

@@ -1,0 +1,18 @@
+package com.main.kparhar;
+
+import org.opencv.core.Mat;
+
+public class FacialDetection {
+
+	int numFaces;
+	int framesUnchanged;
+	
+	public FacialDetection() {
+		
+	}
+	
+	public void detectFaces(Mat frame) {
+		
+	}
+	
+}

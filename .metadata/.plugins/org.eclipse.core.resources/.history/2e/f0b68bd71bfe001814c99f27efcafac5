@@ -1,0 +1,18 @@
+package com.main.kparhar;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class Display extends JFrame{
+	
+	JLabel videoDisplay = new JLabel();
+	
+	public Display(String title) {
+		super(title);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    
+	    setContentPane(videoDisplay);
+	    jframe.setVisible(true);
+	}
+
+}

@@ -1,0 +1,11 @@
+package com.main.kparhar;
+
+import javax.swing.JFrame;
+
+public class Display extends JFrame{
+	
+	public Display(String title) {
+		super(title);
+	}
+
+}

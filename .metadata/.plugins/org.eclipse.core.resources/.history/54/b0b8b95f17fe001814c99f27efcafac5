@@ -1,0 +1,11 @@
+package com.main.kparhar;
+
+public class VideoSource {
+
+	public VideoSource() {
+		
+	}
+	
+	public void getFrame() {}
+	
+}

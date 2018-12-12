@@ -1,0 +1,21 @@
+package com.main.kparhar;
+
+import org.opencv.core.Mat;
+import org.opencv.objdetect.CascadeClassifier;
+
+public class FacialDetection {
+
+	CascadeClassifier detector;
+	
+	int numFaces;
+	int framesUnchanged;
+	
+	public FacialDetection() {
+		
+	}
+	
+	public void detectFaces(Mat frame) {
+		
+	}
+	
+}

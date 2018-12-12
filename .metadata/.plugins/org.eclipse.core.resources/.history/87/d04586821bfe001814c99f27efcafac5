@@ -1,0 +1,9 @@
+package com.main.kparhar;
+
+public class Display extends JFrame{
+	
+	public Display() {
+		
+	}
+
+}

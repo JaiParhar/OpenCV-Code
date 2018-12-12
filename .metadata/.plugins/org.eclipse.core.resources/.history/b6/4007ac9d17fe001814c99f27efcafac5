@@ -1,0 +1,25 @@
+package com.main.kparhar;
+
+import org.opencv.videoio.VideoCapture;
+
+public class VideoSource {
+
+	VideoCapture vSource;
+	
+	public VideoSource(int source) {
+		vSource = new VideoCapture(source);
+	}
+	
+	public VideoSource(String source) {
+		vSource = new VideoCapture(source);
+	}
+	
+	private boolean init() {
+		
+	}
+	
+	public void getFrame() {
+		
+	}
+	
+}

@@ -1,0 +1,19 @@
+package com.main.kparhar;
+
+public class VideoSource {
+
+	VideoCapture vSource;
+	
+	public VideoSource(int source) {
+		
+	}
+	
+	public VideoSource(String source) {
+		
+	}
+	
+	public void getFrame() {
+		
+	}
+	
+}

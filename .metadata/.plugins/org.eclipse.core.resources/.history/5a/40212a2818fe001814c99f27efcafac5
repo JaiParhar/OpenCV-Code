@@ -1,0 +1,38 @@
+package com.main.kparhar;
+
+import org.opencv.core.Mat;
+import org.opencv.videoio.VideoCapture;
+
+public class VideoSource {
+
+	VideoCapture vSource;
+	Mat currFrame;
+	
+	public VideoSource(int source) {
+		vSource = new VideoCapture(source);
+		if(init()) { System.out.println("Video Source Initialized Successfully"); }
+		else { System.out.println("Video Source Could Not Be Initialized Successfully"); }
+	}
+	
+	public VideoSource(String source) {
+		vSource = new VideoCapture(source);
+		if(init()) { System.out.println("Video Source Initialized Successfully"); }
+		else { System.out.println("Video Source Could Not Be Initialized Successfully"); }
+	}
+	
+	private boolean init() {
+		try {
+			currFrame = new Mat();
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+	
+	public void getFrame() {
+		if(!vSource.read(currFrame)) {
+			System.out.println("");
+		}
+	}
+	
+}
