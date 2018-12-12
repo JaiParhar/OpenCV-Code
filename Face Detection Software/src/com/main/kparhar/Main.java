@@ -51,11 +51,27 @@ public class Main {
 					testParams.put("file_base64", base64Output);
 					testParams.put("detection_flags", "bestface, classification");
 					
+					String responseString = "";
 					try {
-						System.out.println(Networker.sendPOST("http://www.betafaceapi.com/api/v2/media", testParams));
+						responseString = Networker.sendPOST("http://www.betafaceapi.com/api/v2/media", testParams);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
+					
+					if(responseString.length() == 0) {
+						System.out.println("Could not get facial data");
+						System.exit(-1);
+					}
+					
+					int cutTo = responseString.indexOf("\"name\": \"race\"");
+					responseString = responseString.substring(cutTo);
+					
+					int cutFrom = responseString.indexOf("}");
+					responseString = responseString.substring(0, cutFrom);
+					
+					responseString = responseString.replaceAll(" ", "");
+					System.out.println(responseString);
+					
 					System.exit(0);
 				}
 			}
