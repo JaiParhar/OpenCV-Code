@@ -21,8 +21,8 @@ public class FacialDetector {
 		framesUnchanged = 0;
 	}
 	
-	public void detectFaces(Mat frame) {
-		detector.detectMultiScale(frame, faceDetections);
+	public void detectFaces(Mat frame, double scaleTestSize, int minNeighbours) {
+		detector.detectMultiScale(frame, faceDetections, scaleTestSize, minNeighbours);
 		numFaces = faceDetections.toArray().length;
 		
 		if(numFaces == lastNumFaces) {

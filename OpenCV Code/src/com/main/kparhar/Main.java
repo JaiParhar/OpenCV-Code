@@ -50,6 +50,9 @@ public class Main {
 	                );
 	            }
 	            
+	            
+	            Imgproc.line(frame, new Point(0, 1), new Point(),new Scalar(0, 255, 0), 3);
+	            
 	            MatOfRect eyeDetections = new MatOfRect();
 	            eyeClassifier.detectMultiScale(frame, eyeDetections);
 	            
